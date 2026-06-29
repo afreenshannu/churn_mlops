@@ -1,0 +1,6 @@
+/telco_churn.csv
+venv/
+__pycache__/
+*.pyc
+
+data/raw/*.csv

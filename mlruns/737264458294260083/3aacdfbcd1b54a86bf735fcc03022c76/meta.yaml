@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/ADMIN/Downloads/churn-mlops/churn-mlops/mlruns/737264458294260083/3aacdfbcd1b54a86bf735fcc03022c76/artifacts
+end_time: 1781541388811
+entry_point_name: ''
+experiment_id: '737264458294260083'
+lifecycle_stage: active
+run_id: 3aacdfbcd1b54a86bf735fcc03022c76
+run_name: rambunctious-cub-229
+run_uuid: 3aacdfbcd1b54a86bf735fcc03022c76
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1781541382349
+status: 3
+tags: []
+user_id: ADMIN
