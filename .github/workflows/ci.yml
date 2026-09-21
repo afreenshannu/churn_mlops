@@ -28,8 +28,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        run: pip install pandas numpy scikit-learn fastapi uvicorn pydantic pytest httpx
-
+        run: pip install pandas numpy scikit-learn mlflow fastapi uvicorn pydantic pytest httpx
       - name: Generate data (CI uses synthetic data since real CSV is DVC-tracked)
         run: |
           mkdir -p data/raw data/processed models
