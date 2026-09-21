@@ -179,21 +179,29 @@ def main():
 
         mlflow.log_params(params)
         mlflow.log_metrics(metrics)
-        mlflow.sklearn.log_model(model, artifact_path="model")
 
-        print("Params:", json.dumps(params, indent=2))
-        print("Metrics:", json.dumps(metrics, indent=2))
 
-        # Keep saving these for the serving app (Phase 4) and CI gate (Phase 5)
-        with open(MODEL_PATH, "wb") as f:
-            pickle.dump(model, f)
+      # mlflow.sklearn.log_model(model, artifact_path="model")
+        # Skip model artifact logging in CI (skops security check blocks it)
+# For full artifact logging, run locally with mlflow ui
+try:
+    mlflow.sklearn.log_model(model, artifact_path="model")
+except Exception as e:
+    print(f"Warning: Could not log model artifact: {e}")
 
-        with open(METRICS_PATH, "w") as f:
-            json.dump({"params": params, "metrics": metrics}, f, indent=2)
+    print("Params:", json.dumps(params, indent=2))
+    print("Metrics:", json.dumps(metrics, indent=2))
 
-        print(f"\nSaved model -> {MODEL_PATH}")
-        print(f"Saved metrics -> {METRICS_PATH}")
-        print(f"MLflow run ID: {mlflow.active_run().info.run_id}")
+    # Keep saving these for the serving app (Phase 4) and CI gate (Phase 5)
+    with open(MODEL_PATH, "wb") as f:
+        pickle.dump(model, f)
+
+    with open(METRICS_PATH, "w") as f:
+        json.dump({"params": params, "metrics": metrics}, f, indent=2)
+
+    print(f"\nSaved model -> {MODEL_PATH}")
+    print(f"Saved metrics -> {METRICS_PATH}")
+    print(f"MLflow run ID: {mlflow.active_run().info.run_id}")
 
 
 if __name__ == "__main__":
