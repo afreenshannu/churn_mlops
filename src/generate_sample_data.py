@@ -22,25 +22,36 @@ dependents = np.random.choice(["Yes", "No"], N, p=[0.3, 0.7])
 tenure = np.random.randint(0, 73, N)
 
 phone_service = np.random.choice(["Yes", "No"], N, p=[0.9, 0.1])
-multiple_lines = np.random.choice(["Yes", "No", "No phone service"], N, p=[0.42, 0.48, 0.10])
-internet_service = np.random.choice(["DSL", "Fiber optic", "No"], N, p=[0.34, 0.44, 0.22])
+multiple_lines = np.random.choice(
+    ["Yes", "No", "No phone service"], N, p=[0.42, 0.48, 0.10])
+internet_service = np.random.choice(
+    ["DSL", "Fiber optic", "No"], N, p=[0.34, 0.44, 0.22])
 
-online_security = np.random.choice(["Yes", "No", "No internet service"], N, p=[0.29, 0.49, 0.22])
-online_backup = np.random.choice(["Yes", "No", "No internet service"], N, p=[0.34, 0.44, 0.22])
-device_protection = np.random.choice(["Yes", "No", "No internet service"], N, p=[0.34, 0.44, 0.22])
-tech_support = np.random.choice(["Yes", "No", "No internet service"], N, p=[0.29, 0.49, 0.22])
-streaming_tv = np.random.choice(["Yes", "No", "No internet service"], N, p=[0.38, 0.40, 0.22])
-streaming_movies = np.random.choice(["Yes", "No", "No internet service"], N, p=[0.39, 0.39, 0.22])
+online_security = np.random.choice(
+    ["Yes", "No", "No internet service"], N, p=[0.29, 0.49, 0.22])
+online_backup = np.random.choice(
+    ["Yes", "No", "No internet service"], N, p=[0.34, 0.44, 0.22])
+device_protection = np.random.choice(
+    ["Yes", "No", "No internet service"], N, p=[0.34, 0.44, 0.22])
+tech_support = np.random.choice(
+    ["Yes", "No", "No internet service"], N, p=[0.29, 0.49, 0.22])
+streaming_tv = np.random.choice(
+    ["Yes", "No", "No internet service"], N, p=[0.38, 0.40, 0.22])
+streaming_movies = np.random.choice(
+    ["Yes", "No", "No internet service"], N, p=[0.39, 0.39, 0.22])
 
-contract = np.random.choice(["Month-to-month", "One year", "Two year"], N, p=[0.55, 0.21, 0.24])
+contract = np.random.choice(
+    ["Month-to-month", "One year", "Two year"], N, p=[0.55, 0.21, 0.24])
 paperless_billing = np.random.choice(["Yes", "No"], N, p=[0.59, 0.41])
 payment_method = np.random.choice(
-    ["Electronic check", "Mailed check", "Bank transfer (automatic)", "Credit card (automatic)"],
+    ["Electronic check", "Mailed check",
+        "Bank transfer (automatic)", "Credit card (automatic)"],
     N, p=[0.34, 0.23, 0.22, 0.21]
 )
 
 monthly_charges = np.round(np.random.uniform(18, 120, N), 2)
-total_charges = np.round(monthly_charges * tenure + np.random.normal(0, 50, N), 2)
+total_charges = np.round(monthly_charges * tenure +
+                         np.random.normal(0, 50, N), 2)
 total_charges = np.clip(total_charges, 0, None)
 
 # Build churn probability based on realistic signals
@@ -82,6 +93,6 @@ df = pd.DataFrame({
     "Churn": churn_label,
 })
 
-df.to_csv("/home/claude/churn-mlops/data/raw/telco_churn.csv", index=False)
+df.to_csv("data/raw/telco_churn.csv", index=False)
 print(f"Generated {len(df)} rows -> data/raw/telco_churn.csv")
 print(f"Churn rate: {(df['Churn'] == 'Yes').mean():.2%}")
