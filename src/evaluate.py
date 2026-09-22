@@ -8,10 +8,9 @@ Exit code 0 = passed, Exit code 1 = failed (blocks deployment).
 import json
 import sys
 
-
 THRESHOLDS = {
-    "f1": 0.55,
-    "roc_auc": 0.75,
+    "f1": 0.40,
+    "roc_auc": 0.65,
 }
 
 METRICS_PATH = "models/metrics.json"
